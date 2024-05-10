@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,4 +10,24 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'books#index'
   resources :books
+
+  # StaticPages
+  get '/about' => 'static_pages#about', as: :about
+  get '/contact' => 'static_pages#contact', as: :contact
+
+  # Admin
+  namespace :admin do
+    root to: 'books#index'
+    resources :categories do
+      collection do
+        post 'search', to: 'categories#search', as: :search
+
+      end
+    end
+    resources :books do
+      collection do
+        post 'search', to: 'books#search', as: :search
+      end
+    end
+  end
 end

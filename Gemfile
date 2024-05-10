@@ -32,6 +32,17 @@ gem 'jbuilder'
 # Authentication
 gem 'devise'
 
+# Pagination
+gem 'kaminari'
+
+# Search form
+gem 'bootstrap-kaminari-views'
+gem 'ransack'
+
+gem 'bootstrap'
+
+gem 'sassc-rails'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -57,7 +68,10 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'bullet'
   gem 'faker'
+  gem 'pry'
+  gem 'rubocop'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

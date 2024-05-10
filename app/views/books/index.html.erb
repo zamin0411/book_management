@@ -1,5 +1,21 @@
 <% provide(:title, 'Book Index') %>
-<h1>Book Index</h1>
-<ul class="books">
-  <%= render @books %>
+<h1 class ="ms-2">Book Index</h1>
+<%= search_form_for @q, class: "d-flex justify-content-end" do |f| %>
+  <%= f.search_field :name_or_author_cont, class: "form-control w-50 me-3" %>
+  <%= f.submit(class: "btn btn-outline-success") %>
+<% end %>
+<ul class="books mt-5">
+  <% @books.each_slice(3) do |books| %>
+    <div class="row">
+      <% books.each do |book| %>
+        <div class="col-lg-4 d-flex align-items-stretch">
+          <%= render book %>
+        </div>
+      <% end %>
+    </div>
+    <hr/>
+  <% end %>
 </ul>
+<div class="d-flex justify-content-center">
+  <%= paginate @books %>
+</div>

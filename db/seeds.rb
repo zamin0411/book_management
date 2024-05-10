@@ -8,8 +8,31 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# Admin
 User.create!(name: 'Example User',
              email: 'example@railstutorial.org',
              password: 'foobar',
              password_confirmation: 'foobar',
-             admin: true)
+             role: :admin)
+
+# Regular user
+User.create!(name: 'Zamin',
+             email: 'giamanho37@gmail.com',
+             password: '123123',
+             password_confirmation: '123123')
+
+# Generate a bunch of categories.
+30.times do
+  Category.create!(name: Faker::Book.unique.genre)
+end
+
+# Generate a bunch of books.
+30.times do
+  Book.create!(name: Faker::Book.title,
+               author: Faker::Book.author,
+               image: Faker::LoremFlickr.image,
+               description: Faker::Lorem.sentence(word_count: 10),
+               status: :published,
+               content: Faker::Lorem.paragraph(sentence_count: 100),
+               category: Category.all.sample)
+end

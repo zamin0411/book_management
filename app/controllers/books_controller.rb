@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    q_param = params[:q]
+    page = params[:page]
+    per_page = params[:per_page] || 9
+    @q = Book.where(status: :published).ransack q_param
+    @books = @q.result.page(page).per(per_page)
   end
 
   def new
@@ -9,8 +13,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    redirect_to root_url
-
+    render 'show'
   end
 
   def create
@@ -53,5 +56,4 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:name, :image, :status)
   end
-
 end

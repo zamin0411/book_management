@@ -1,0 +1,14 @@
+<tr>
+  <td><%= link_to category.name, admin_category_path(category.id) %></td>
+  <td>
+    <%= link_to edit_admin_category_path(category.id), class: 'nav-btn' do %>
+      <i class="bi bi-pencil-square"></i>
+    <% end %>
+    <%= link_to admin_category_path(category.id), class: 'nav-btn', data: {
+      turbo: true, 
+      turbo_method: :delete, 
+      turbo_confirm: "Are you sure?" } do %>
+      <i class="bi bi-trash"></i>
+    <% end %>
+  </td>
+</tr>

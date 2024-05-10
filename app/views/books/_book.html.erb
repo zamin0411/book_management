@@ -1,4 +1,8 @@
-<li>
-  <p><%= book.name %></p>
-  <%= image_tag book.image unless book.image.blank? %>
-</li>
+<div class="card" style="width: 18rem;">
+  <%= image_tag(book.image, class: "card-img-top")%>
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title"><%= book.name %> by <%= book.author %></h5>
+    <p class="card-text"><%= book.description %></p>
+    <%= link_to "Read", book_path(book.id), class: "btn btn-outline-success ms-auto mt-auto"%>
+  </div>
+</div>

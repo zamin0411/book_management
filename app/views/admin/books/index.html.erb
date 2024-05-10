@@ -1,0 +1,29 @@
+<% provide(:title, 'Book Index') %>
+<h1>Book Index</h1>
+<%= search_form_for @q, url: admin_books_path, class: "d-flex justify-content-end" do |f| %>
+  <%= f.search_field :name_or_author_cont, class: "form-control w-50 me-3" %>
+  <%= f.submit(class: "btn btn-outline-success ml-lg-0") %>
+<% end %>
+<%= link_to new_admin_book_path, class: "btn btn-outline-success mt-10", role: "button" do %>
+  <i class="bi bi-plus-circle"></i>New Book
+<% end %>
+<% if @books.any? %>
+  <table class="table m-2">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @books %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <%= paginate @books %>
+  </div>
+<% else %>
+  <h1>No books found</h1>
+<% end %>

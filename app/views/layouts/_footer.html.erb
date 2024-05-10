@@ -1,13 +1,14 @@
-<footer class="footer">
-  <small>
-    The <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    by <a href="https://www.michaelhartl.com/">Michael Hartl</a>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <li><a href="https://news.railstutorial.org/">News</a></li>
+<div class="container mt-auto">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">&copy; 2024 Bookie</p>
+    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+    </a>
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><%= link_to "About", about_path, class: "nav-link px-2 text-muted" %></li>
+      <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link px-2 text-muted" %></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
     </ul>
-  </nav>
-</footer>
+  </footer>
+</div>

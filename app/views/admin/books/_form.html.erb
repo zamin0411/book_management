@@ -1,0 +1,23 @@
+<% readonly = false if local_assigns[:readonly].nil? %>
+<%= form_with(model: [:admin, @book], local: true, class: "ms-3 d-flex flex-column justify-content-end") do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control', readonly: readonly %>
+  <%= f.label :author %>
+  <%= f.text_field :author, class: 'form-control', readonly: readonly %>
+  <%= f.label :category %>
+  <% if readonly%>
+    <%= fields_for :category, @book.category do |category_form| %>
+      <%= category_form.text_field :name,class: 'form-control', readonly: true %>
+    <% end %>
+  <% else %>
+    <%= f.collection_select(:category_id, @categories, :id, :name, {}, {:class => 'form-select'}) %>
+  <% end %>
+  <%= f.label :status %>
+  <%= f.select(:status, Book.statuses.keys, {}, class: "form-select") %>
+  <%= f.label :image %>
+  <%= f.text_field :image, class: 'form-control', readonly: readonly %>
+  <% if !readonly %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary mt-2" %>
+  <% end %>
+<% end %>
