@@ -15,6 +15,13 @@ User.create!(name: 'Example User',
              password_confirmation: 'foobar',
              role: :admin)
 
+# Manager
+User.create!(name: 'manager',
+             email: 'manager@gmail.com',
+             password: '123123',
+             password_confirmation: '123123',
+             role: :manager)
+
 # Regular user
 User.create!(name: 'Zamin',
              email: 'giamanho37@gmail.com',

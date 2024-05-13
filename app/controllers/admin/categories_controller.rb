@@ -1,5 +1,6 @@
 class Admin::CategoriesController < ApplicationController
-  before_action :admin_user
+  # before_action :admin_user
+  load_and_authorize_resource
 
   def index
     q_param = params[:q]
@@ -62,6 +63,6 @@ class Admin::CategoriesController < ApplicationController
 
   # Confirms an admin user.
   def admin_user
-    redirect_to(root_url) unless current_user&.admin?
+    redirect_to(root_url) unless current_user&.admin? || current_user&.manager?
   end
 end

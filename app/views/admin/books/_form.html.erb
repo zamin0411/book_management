@@ -17,6 +17,10 @@
   <%= f.select(:status, Book.statuses.keys, {}, class: "form-select") %>
   <%= f.label :image %>
   <%= f.text_field :image, class: 'form-control', readonly: readonly %>
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control', readonly: readonly %>
+  <%= f.label :content %>
+  <%= f.text_area :content, class: 'form-control', readonly: readonly %>
   <% if !readonly %>
     <%= f.submit yield(:button_text), class: "btn btn-primary mt-2" %>
   <% end %>

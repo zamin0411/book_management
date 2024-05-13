@@ -3,5 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  enum :role, %i[regular admin], default: :regular
+  enum :role, %i[regular admin manager], default: :regular
+
+  validates :name, presence: true, length: { maximum: 50 }
 end

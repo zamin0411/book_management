@@ -1,5 +1,6 @@
 class Admin::BooksController < ApplicationController
-  before_action :admin_user
+  # before_action :admin_user
+  load_and_authorize_resource
 
   def index
     q_param = params[:q]
@@ -29,11 +30,13 @@ class Admin::BooksController < ApplicationController
     # The require method returns the value of the key passed as an argument (in this case, :book).
     # The permit method specifies which attributes should be allowed for mass updating.
     @book = Book.new(book_params)
+    debugger
     if @book.save
       # Handle a successful save.
       flash[:info] = 'Book created successfully'
-      redirect_to 'admin/books/index'
+      redirect_to [:admin, @book]
     else
+      @categories = Category.all
       render 'new'
     end
   end
@@ -63,7 +66,7 @@ class Admin::BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:name, :image, :status, :author)
+    params.require(:book).permit(:name, :image, :status, :author, :category_id, :description, :content)
   end
 
   # Confirms an admin user.
